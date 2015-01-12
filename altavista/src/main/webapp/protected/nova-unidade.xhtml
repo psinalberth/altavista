@@ -5,6 +5,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
       			<ui:define name="content">
+      				
+      				<f:metadata>
+      					<f:viewParam name="unidade" value="#{unidadeBean.unidade}"/>
+      				</f:metadata>
       				<h:form id="nova_unidade">
       				<p:messages autoUpdate="true" closable="true"/>
       				<p:panel header="Nova Unidade" style="width: 640px; margin: auto">
@@ -40,7 +44,7 @@
       							<f:selectItem itemValue="#{true}" itemLabel="Alugada"/>
       							<f:selectItem itemValue="#{false}" itemLabel="Inativa"/>
       						</h:selectOneRadio>
-      						<p:commandButton value="Salvar" id="salvar" action="#{unidadeBean.salvar()}"/>
+      						<p:commandButton value="Salvar" id="salvar" action="#{unidadeBean.salvar()}" update="@form"/>
       					</h:panelGrid>
       				</p:panel>
       				</h:form>

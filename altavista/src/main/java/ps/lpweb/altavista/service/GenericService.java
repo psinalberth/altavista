@@ -32,7 +32,18 @@ public abstract class GenericService<T> {
 	
 	public T alterar(T entity) {
 		
-		T temp = getEntityManager().merge(entity);
+		T temp = null;
+		
+		try {
+			
+			getEntityManager().getTransaction().begin();
+			temp = getEntityManager().merge(entity);
+			getEntityManager().getTransaction().commit();
+		
+		} catch (IllegalArgumentException ex) {
+			
+			getEntityManager().getTransaction().rollback();
+		}
 		
 		return temp;
 	}

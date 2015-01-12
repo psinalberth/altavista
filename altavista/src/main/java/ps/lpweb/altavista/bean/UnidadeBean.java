@@ -35,6 +35,11 @@ public class UnidadeBean implements Serializable {
 		init();
 	}
 	
+	public void alterar() {
+		
+		service.alterar(this.unidade);
+	}
+	
 	public List<Unidade> listar() {
 		
 		return service.listar();
@@ -42,5 +47,9 @@ public class UnidadeBean implements Serializable {
 	
 	public Unidade getUnidade() {	
 		return this.unidade;
+	}
+	
+	public boolean isEditando() {
+		return this.unidade.getIdUnidade() != null;
 	}
 }
