@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -32,6 +34,7 @@ public class UnidadeBean implements Serializable {
 	public void salvar() {
 		
 		service.salvar(this.unidade);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Nova unidade salva!"));
 		init();
 	}
 	
@@ -40,9 +43,18 @@ public class UnidadeBean implements Serializable {
 		service.alterar(this.unidade);
 	}
 	
+	public void excluir() {
+		
+		service.excluir(this.unidade);
+	}
+	
 	public List<Unidade> listar() {
 		
 		return service.listar();
+	}
+	
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
 	}
 	
 	public Unidade getUnidade() {	

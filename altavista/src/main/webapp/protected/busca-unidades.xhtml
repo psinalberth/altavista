@@ -8,7 +8,7 @@
 	<ui:define name="titulo">Consultar Unidades</ui:define>
 
 	<ui:define name="content">
-		<h:form>
+		<h:form id="frmListarUnidades">
 			<p:dataTable id="unidadeTable" value="#{unidadeBean.listar()}" var="unidade">
 			
 				<p:column headerText="Responsável">
@@ -32,12 +32,26 @@
 				</p:column>
 				
 				<p:column style="text-align:center">
+					
 					<p:button outcome="/protected/nova-unidade" icon="ui-icon-pencil" title="Editar">
 						<f:param name="unidade" value="#{unidade.idUnidade}"></f:param>
 					</p:button>
+					
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confirmacaoExclusao.show()"
+					process="@this" update=":frmListarUnidades:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener target="#{unidadeBean.unidade}" value="#{unidade}" />
+					</p:commandButton>
+					
 				</p:column>
-				
 			</p:dataTable>
+			<p:confirmDialog header="Excluir Unidade" 
+	    		message="Tem certeza que deseja excluir a Unidade?"
+	    		widgetVar="confirmacaoExclusao"	id="confirmacaoExclusaoDialog">
+	    		<p:button value="Não" onclick="confirmacaoExclusao.hide(); return false;" />
+	    		<p:commandButton value="Sim" oncomplete="confirmacaoExclusao.hide();"
+	    			action="#{unidadeBean.excluir}" process="@this"
+	    			update=":frmListarUnidades:unidadeTable" />
+	    	</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

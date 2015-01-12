@@ -7,7 +7,6 @@ import javax.faces.convert.FacesConverter;
 
 import ps.lpweb.altavista.model.Unidade;
 import ps.lpweb.altavista.repository.Unidades;
-import ps.lpweb.altavista.util.CDIServiceLocator;
 
 @FacesConverter(forClass = Unidade.class)
 public class UnidadeConverter implements Converter {
@@ -16,7 +15,7 @@ public class UnidadeConverter implements Converter {
 	
 	public UnidadeConverter() {
 		
-		unidades = CDIServiceLocator.getBean(Unidades.class);
+		//unidades = CDIServiceLocator.getBean(Unidades.class);
 	}
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {

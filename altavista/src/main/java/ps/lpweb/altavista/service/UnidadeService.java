@@ -31,4 +31,9 @@ public class UnidadeService implements Serializable {
 		
 		return unidades.getAll();
 	}
+	
+	public void excluir(Unidade unidade) {
+		
+		unidades.delete(unidade);
+	}
 }
